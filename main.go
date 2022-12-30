@@ -8,12 +8,12 @@ import (
 	"poke-api-fiber/routes"
 )
 
-func main () {
+func main() {
 	database.ConnectDb()
 	app := fiber.New()
 
-	app.Get("/list", routes.PokemonList)
 	app.Use(cors.New())
+	app.Get("/list", routes.PokemonList)
 
 	log.Fatal(app.Listen(":3000"))
 }
