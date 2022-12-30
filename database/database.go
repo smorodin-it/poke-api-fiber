@@ -2,11 +2,11 @@ package database
 
 import (
 	"fmt"
-	"poke-api-fiber/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 	"log"
+	"poke-api-fiber/models"
 )
 
 type DbConfig struct {
@@ -27,7 +27,6 @@ var config = DbConfig{
 
 var Dsn = fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=disable TimeZone=Europe/Moscow", config.host, config.user, config.password, config.dbname, config.port)
 
-
 type Dbinstance struct {
 	Db *gorm.DB
 }
@@ -47,7 +46,7 @@ func ConnectDb() {
 	log.Println("connected")
 	db.Logger = logger.Default.LogMode(logger.Info)
 	log.Println("running migrations")
-	if err = db.AutoMigrate(&models.Pokemon{}); err !=nil {
+	if err = db.AutoMigrate(&models.Pokemon{}); err != nil {
 		log.Fatal(err.Error())
 	}
 
